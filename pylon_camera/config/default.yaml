@@ -104,6 +104,17 @@ frame_rate: 5.0
 #  A typical value for this upper bound is ~2000000us.
 # auto_exposure_upper_limit: 2000000.0
 
+#  The fetch_camera_timestamp flag controls
+#  how the time stamp inside each image's header is determined.
+#  If the flag is set to false, the timestamp corresponds to the ROS time
+#  once the image was received by the host computer.
+#  If the flag is set to true, the time stamp from the camera,
+#  which contains a stamp of when the frame acquision was triggered, is fetched.
+#  Set this flag to true only if the camera's clock is synchronized
+#  with the clock of the host computer (through PTP IEEE-1588).
+#  By default, the flag is set to false.
+fetch_camera_timestamp: true
+
 #  The MTU size. Only used for GigE cameras.
 #  To prevent lost frames configure the camera has to be configured
 #  with the MTU size the network card supports. A value greater 3000

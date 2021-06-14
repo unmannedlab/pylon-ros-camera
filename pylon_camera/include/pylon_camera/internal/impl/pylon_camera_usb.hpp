@@ -72,7 +72,7 @@ struct USBCameraTrait
     typedef Basler_UsbCameraParams::UserSetSelectorEnums UserSetSelectorEnums;
     typedef Basler_UsbCameraParams::UserSetDefaultEnums UserSetDefaultSelectorEnums;
     typedef Basler_UsbCameraParams::LineFormatEnums LineFormatEnums;
-
+    typedef Basler_UsbCameraParams::ChunkSelectorEnums ChunkSelectorEnums;
 
     static inline AutoTargetBrightnessValueType convertBrightness(const int& value)
     {

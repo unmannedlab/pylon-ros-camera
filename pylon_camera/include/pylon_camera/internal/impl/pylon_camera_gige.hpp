@@ -73,7 +73,7 @@ struct GigECameraTrait
     typedef Basler_GigECameraParams::UserSetDefaultSelectorEnums UserSetDefaultSelectorEnums;
     typedef Basler_GigECamera::LineFormatEnums LineFormatEnums;
     typedef Basler_GigECamera::GammaSelectorEnums GammaSelectorEnums;
-
+    typedef Basler_GigECamera::ChunkSelectorEnums ChunkSelectorEnums;
 
     static inline AutoTargetBrightnessValueType convertBrightness(const int& value)
     {

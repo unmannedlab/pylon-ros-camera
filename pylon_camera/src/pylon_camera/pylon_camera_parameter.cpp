@@ -69,6 +69,7 @@ PylonCameraParameter::PylonCameraParameter() :
         inter_pkg_delay_(1000),
         startup_user_set_(""),
         shutter_mode_(SM_DEFAULT),
+        fetch_camera_timestamp_(false),
         auto_flash_(false)
 {}
 
@@ -253,6 +254,13 @@ void PylonCameraParameter::readFromRosParameterServer(const ros::NodeHandle& nh)
     {
         shutter_mode_ = SM_DEFAULT;
     }
+    
+    if ( nh.hasParam("fetch_camera_timestamp"))
+    {
+        nh.getParam("fetch_camera_timestamp", fetch_camera_timestamp_);
+    }
+
+
     if ( nh.hasParam("startup_user_set") )
     {
         nh.getParam("startup_user_set", startup_user_set_);

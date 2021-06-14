@@ -71,6 +71,8 @@ public:
 
     virtual bool grab(uint8_t* image);
 
+    virtual bool grab(std::vector<uint8_t>& image, ros::Time& stamp);
+
     virtual bool setShutterMode(const pylon_camera::SHUTTER_MODE& mode);
 
     virtual bool setROI(const sensor_msgs::RegionOfInterest target_roi,
@@ -281,7 +283,7 @@ protected:
     typedef typename CameraTraitT::UserSetSelectorEnums UserSetSelectorEnums;
     typedef typename CameraTraitT::UserSetDefaultSelectorEnums UserSetDefaultSelectorEnums;
     typedef typename CameraTraitT::LineFormatEnums LineFormatEnums;
-
+    typedef typename CameraTraitT::ChunkSelectorEnums ChunkSelectorEnums;
 
     CBaslerInstantCameraT* cam_;
 
@@ -304,6 +306,8 @@ protected:
 
     virtual bool setupSequencer(const std::vector<float>& exposure_times,
                                 std::vector<float>& exposure_times_set);
+
+    virtual bool enableTimestampChunk();
 };
 
 }  // namespace pylon_camera

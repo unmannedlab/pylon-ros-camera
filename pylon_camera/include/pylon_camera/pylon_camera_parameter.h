@@ -291,6 +291,17 @@ public:
     bool has_intrinsic_calib_;
 
     /**
+     * Flag that controls how the time stamp inside each image's header is determined.
+     * If the flag is set to false, the timestamp corresponds to the ROS time
+     * once the image was received by the host computer.
+     * If the flag is set to true, the time stamp from the camera,
+     * which contains a stamp of when the frame acquision was triggered, is fetched.
+     * Set this flag to true only if the camera's clock is synchronized
+     * with the clock of the host computer (through PTP IEEE-1588).
+     */
+    bool fetch_camera_timestamp_;
+
+    /**
      * Flag that indicates if the camera has a flash connected which should be on on exposure
      * Only supported for GigE cameras. Default: false
      */

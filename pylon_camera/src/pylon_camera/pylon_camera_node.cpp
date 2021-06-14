@@ -697,11 +697,22 @@ void PylonCameraNode::spin()
 bool PylonCameraNode::grabImage()
 {
     boost::lock_guard<boost::recursive_mutex> lock(grab_mutex_); 
-    if ( !pylon_camera_->grab(img_raw_msg_.data) )
+    bool grab_result;
+    if (pylon_camera_parameter_set_.fetch_camera_timestamp_)
     {
+        grab_result = pylon_camera_->grab(img_raw_msg_.data, img_raw_msg_.header.stamp);
+    }
+    else
+    {
+        grab_result = pylon_camera_->grab(img_raw_msg_.data);
+        img_raw_msg_.header.stamp = ros::Time::now();
+    }
+    if (!grab_result)
+    {
+        // more specific error message is logged by the called function.
+        ROS_WARN("Error while grabbing image! Skipping");
         return false;
     }
-    img_raw_msg_.header.stamp = ros::Time::now(); 
     return true;
 }
 
@@ -922,14 +933,18 @@ camera_control_msgs::GrabImagesResult PylonCameraNode::grabImagesRaw(
         // already contains the number of channels
         img.step = img.width * pylon_camera_->imagePixelDepth();
 
-        if ( !pylon_camera_->grab(img.data) )
+        if ( pylon_camera_parameter_set_.fetch_camera_timestamp_ )
         {
-            result.success = false;
-            break;
+            result.success = pylon_camera_->grab(img.data, img.header.stamp);
         }
-
-        img.header.stamp = ros::Time::now();
+        else
+        {
+            result.success = pylon_camera_->grab(img.data);
+            img.header.stamp = ros::Time::now();
+        }
+        if ( !result.success ) break;
         img.header.frame_id = cameraFrame();
+        
         feedback.curr_nr_images_taken = i+1;
 
         if ( action_server != nullptr )
