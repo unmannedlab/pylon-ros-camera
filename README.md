@@ -1,6 +1,6 @@
 # pylon-ROS-camera
 
-The official pylon ROS driver for [Basler](http://www.baslerweb.com/) GigE Vision and USB3 Vision cameras
+The unofficial pylon ROS driver for [Basler](http://www.baslerweb.com/) GigE Vision and USB3 Vision cameras which the only difference is the addition of timesteps generated from the camera instead of ros time.
 
 **Please Note:**
 This project is offered with no technical support by Basler AG.
