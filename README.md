@@ -16,7 +16,7 @@ This driver was improved by [drag and bot GmbH](https://www.dragandbot.com) from
 Please check the README file of each package for more details and help.
 
 ## For the Impatient
- * Clone this repository in your catkin workspace (e.g. catkin_ws): `cd ~/catkin_ws/src && git clone https://github.com/basler/pylon-ros-camera`
+ * Clone this repository in your catkin workspace (e.g. catkin_ws): `cd ~/catkin_ws/src && git clone https://github.com/unmannedlab/pylon-ros-camera.git`
  * Clone drag&bot public common messages: `git clone https://github.com/dragandbot/dragandbot_common.git`
  * Install ROS dependencies: `sudo sh -c 'echo "yaml https://raw.githubusercontent.com/basler/pylon-ros-camera/master/pylon_camera/rosdep/pylon_sdk.yaml" > /etc/ros/rosdep/sources.list.d/30-pylon_camera.list' && rosdep update && sudo rosdep install --from-paths . --ignore-src --rosdistro=$ROS_DISTRO -y`
  * Compile the workspace using catkin build or catkin make: `cd ~/catkin_ws && catkin clean -y && catkin build && source ~/.bashrc` or `cd ~/catkin_ws && catkin_make clean && catkin_make && source ~/.bashrc`
@@ -95,6 +95,7 @@ This is a list of the supported functionality accesible through ROS services, wh
  * (GigE only) GevSCPSPacketSize (Packet Size)
  * (GigE only) GevSCPD (Inter-Packet Delay)
  * (USB only) MaxTransferSize 
+ * Camera-generated Timestamp
 
 ## ROS Service list
 
